@@ -7,6 +7,48 @@ const port = 3000
 
 const expressHbs = require('express-handlebars');
 
+const mongoose = require('mongoose');
+
+const uri = 'mongodb+srv://contact:Tk9Sxiw2esAfqjb0@cluster0.d6bccuf.mongodb.net/cp17305?retryWrites=true&w=majority';
+
+const btModel = require('./baithoModel');
+
+app.get('/tho', async (req, res) => {
+  await mongoose.connect(uri).then(console.log('Ket noi DB thanh cong!'));
+
+  let listThos = await btModel.find({nam: 1975, tieude: 'Giai phong Dien Bien'});
+
+  console.log(listThos);
+  res.send(listThos);
+
+})
+
+app.get('/add_tho', async (req, res) => {
+  await mongoose.connect(uri).then(console.log('Ket noi DB thanh cong!'));
+
+  const baitho = new btModel({
+    tieude: 'Hat gao lang ta',
+    nam: 1973
+  });
+
+  baitho.tacgia = 'Tran Dang Khoa';
+
+  let kq  = await baitho.save();
+
+  console.log(kq);
+
+  let listThos = await btModel.find();
+
+  // btModel.updateMany({nam: 1975}, {nam: 1976})
+  // btModel.updateOne()
+
+  // btModel.deleteMany()
+  // btModel.deleteOne()
+
+  res.send(listThos);
+
+})
+
 app.engine('.hbs', expressHbs.engine({
   extname: "hbs",
   //defaultLayout: 'main',
