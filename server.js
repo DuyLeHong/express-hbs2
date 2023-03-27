@@ -9,7 +9,7 @@ const expressHbs = require('express-handlebars');
 
 const mongoose = require('mongoose');
 
-const uri = 'mongodb+srv://contact:Tk9Sxiw2esAfqjb0@cluster0.d6bccuf.mongodb.net/cp17305?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://contact:password@cluster0.d6bccuf.mongodb.net/cp17305?retryWrites=true&w=majority';
 
 const btModel = require('./baithoModel');
 
